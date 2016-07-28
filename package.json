@@ -1,0 +1,55 @@
+{
+  "name": "es6-particles",
+  "version": "0.0.1",
+  "description": "Simple functional particle engine in es6",
+  "main": "index.html",
+  "scripts": {
+    "test": "npm run lint && karma start",
+    "clean": "rm -rf dist && mkdir -p dist/js",
+    "browserify": "browserify ./src/js/app.js -o ./dist/js/app.js",
+    "build:js": "npm run browserify",
+    "build:html": "cp ./src/*.html ./dist/",
+    "build": "npm run clean && npm run build:html && npm run build:js",
+    "prebuild": "npm run test",
+    "lint": "eslint src/**/*.js",
+    "serve": "http-server dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:mr-rampage/es6-particles.git"
+  },
+  "keywords": [
+    "es6",
+    "particles"
+  ],
+  "author": "Mr Rampage",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mr-rampage/es6-particles/issues"
+  },
+  "homepage": "https://github.com/mr-rampage/es6-particles#readme",
+  "devDependencies": {
+    "babel-core": "latest",
+    "babel-polyfill": "latest",
+    "babel-preset-es2015": "latest",
+    "babelify": "latest",
+    "browserify": "latest",
+    "eslint": "latest",
+    "eslint-config-google": "latest",
+    "jasmine-core": "latest",
+    "karma": "latest",
+    "karma-browserify": "latest",
+    "karma-jasmine": "latest",
+    "karma-phantomjs-launcher": "latest",
+    "karma-spec-reporter": "latest",
+    "phantomjs-prebuilt": "latest",
+    "watchify": "latest"
+  },
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  },
+  "dependencies": {
+  }
+}
