@@ -1,3 +1,5 @@
+import Moveable from "./Moveable";
+
 function hasLength() {
   return (array) => {
     return array ? [...arguments].some((length) => array.length === length) : true;
@@ -7,29 +9,29 @@ function hasLength() {
 
 export default class MoveableBuilder {
 
-  constructor(coordinates = [], vector = []) {
-    this.coordinates = coordinates;
-    this.vector = vector;
+  constructor(moveable = new Moveable()) {
+    this.moveable = moveable;
   }
 
   at(...coordinates) {
     if (hasLength(2, 0)(coordinates)) {
-      return new MoveableBuilder(coordinates, this.vector);
+      this.moveable.coordinates = coordinates;
+      return this;
     }
     throw "MoveableBuilder: Invalid Moveable coordinates";
   }
 
   facing(...vector) {
     if (hasLength(2, 0)(vector)) {
-      return new MoveableBuilder(this.coordinates, vector);
+      this.moveable.vector = vector;
+      return this;
     }
     throw "MoveableBuilder: Invalid Moveable vector";
   }
 
   build() {
-    return {
-      coordinates: this.coordinates,
-      vector: this.vector
-    }
+    const product = new Moveable(this.moveable.coordinates, this.moveable.vector);
+    this.moveable = new Moveable();
+    return Object.freeze(product);
   }
 }
