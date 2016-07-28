@@ -5,7 +5,7 @@ function hasLength() {
 } 
 
 
-export default class PlaceableBuilder {
+export default class MoveableBuilder {
 
   constructor(coordinates = [], vector = []) {
     this.coordinates = coordinates;
@@ -14,16 +14,16 @@ export default class PlaceableBuilder {
 
   at(...coordinates) {
     if (hasLength(2, 0)(coordinates)) {
-      return new PlaceableBuilder(coordinates, this.vector);
+      return new MoveableBuilder(coordinates, this.vector);
     }
-    throw "PlaceableBuilder: Invalid Placeable coordinates";
+    throw "MoveableBuilder: Invalid Moveable coordinates";
   }
 
   facing(...vector) {
     if (hasLength(2, 0)(vector)) {
-      return new PlaceableBuilder(this.coordinates, vector);
+      return new MoveableBuilder(this.coordinates, vector);
     }
-    throw "PlaceableBuilder: Invalid Placeable vector";
+    throw "MoveableBuilder: Invalid Moveable vector";
   }
 
   build() {
