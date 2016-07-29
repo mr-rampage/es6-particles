@@ -1,8 +1,7 @@
 export default class Moveable {
-
   constructor(coordinates = [], vector = []) {
     this.coordinates = coordinates;
-    this.vector = vector
+    this.vector = vector;
   }
 
   forward() {
