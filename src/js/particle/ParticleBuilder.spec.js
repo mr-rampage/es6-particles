@@ -16,4 +16,15 @@ describe("ParticleBuilder", () => {
     expect(expected).toEqual(actual);
   });
 
+  it('should move forward and degrade on move.', () => {
+    const particle = new ParticleBuilder().at(1, 1).facing(2, 1).lifespan(50).decay(5).build();
+
+    const actual = particle.move();
+
+    const expected = new Particle({ coordinates: [3, 2], vector: [2, 1],
+      lifespan: 45, decay: 5 });
+    expect(expected).toEqual(actual);
+    expect(expected).not.toBe(actual);
+  });
+
 });
