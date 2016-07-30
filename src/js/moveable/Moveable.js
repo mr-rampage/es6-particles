@@ -5,12 +5,12 @@ function Moveable(properties) {
 }
 
 Moveable.prototype.forward = function() {
-  const nextLocation = { 
+  const nextLocation = {
     coordinates: this.coordinates
       .map((point, index) => point + this.vector[index])
   };
   const next = Object.assign({}, this, nextLocation);
-  return new this.constructor(next); 
-}
+  return new this.constructor(next);
+};
 
 export default Moveable;
