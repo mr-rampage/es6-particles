@@ -1,5 +1,6 @@
 export default class Moveable {
-  constructor(coordinates = [], vector = []) {
+  constructor(properties) {
+    const {coordinates = [], vector = []} = properties;
     this.coordinates = coordinates;
     this.vector = vector;
   }
