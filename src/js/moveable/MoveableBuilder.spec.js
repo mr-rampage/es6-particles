@@ -3,21 +3,21 @@ import MoveableBuilder from "./MoveableBuilder";
 describe("MoveableBuilder", () => {
 
   it("should create a Moveable with coordinates", () => {
-    const moveable = new MoveableBuilder().at(1,1).build();
-    expect(moveable.coordinates).toEqual([1,1]);
-    expect(moveable.vector).toEqual([]);
+    const actual = new MoveableBuilder().at(1,1).build();
+    const expected = { coordinates: [1, 1], vector: [] };
+    expect(actual).toEqual(expected);
   });
 
   it("should create a Moveable with a vector", () => {
-    const moveable = new MoveableBuilder().facing(1,1).build();
-    expect(moveable.coordinates).toEqual([]);
-    expect(moveable.vector).toEqual([1,1]);
+    const actual = new MoveableBuilder().facing(1,1).build();
+    const expected = { coordinates: [], vector: [1, 1] };
+    expect(actual).toEqual(expected);
   });
 
   it("should create a Moveable with coordinates and a vector", () => {
-    const moveable = new MoveableBuilder().at(2,2).facing(1,1).build();
-    expect(moveable.coordinates).toEqual([2,2]);
-    expect(moveable.vector).toEqual([1,1]);
+    const actual = new MoveableBuilder().at(2,2).facing(1,1).build();
+    const expected = { coordinates: [2, 2], vector: [1, 1] };
+    expect(actual).toEqual(expected);
   });
 
 });

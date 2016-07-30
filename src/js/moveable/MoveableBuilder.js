@@ -1,8 +1,12 @@
-import Moveable from "./Moveable";
+import { propertySetter } from "../utils/BuilderUtils";
 
-export default function MoveableBuilder(coordinates = [], vector = []) {
-  const self = this;
-  this.at = (...coordinates) => new self.constructor(coordinates, vector);
-  this.facing = (...vector) => new self.constructor(coordinates, vector);
-  this.build = () => new Moveable(coordinates, vector);
-}
+export default function MoveableBuilder(product) {
+  this.at = propertySetter.call(this, product, 'coordinates', true);
+    
+  this.facing = propertySetter.call(this, product, 'vector', true);
+    
+  this.build = () => Object.assign({
+    coordinates: [],
+    vector: []
+  }, product);
+};

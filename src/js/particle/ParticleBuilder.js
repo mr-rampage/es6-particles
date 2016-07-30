@@ -1,10 +1,14 @@
-import Particle from "./Particle";
+import { propertySetter } from "../utils/BuilderUtils";
+import MoveableBuilder from "../moveable/MoveableBuilder";
 
-export default function ParticleBuilder(coordinates = [], vector = [], lifespan = 255, decay = 1) {
-  const self = this;
-  this.at = (...coordinates) => new self.constructor(coordinates, vector, lifespan, decay);
-  this.facing = (...vector) => new self.constructor(coordinates, vector, lifespan, decay);
-  this.lifespan = (lifespan) => new self.constructor(coordinates, vector, lifespan, decay);
-  this.decay = (decay) => new self.constructor(coordinates, vector, lifespan, decay);
-  this.build = () => new Particle(coordinates, vector, lifespan, decay);
-}
+export default function ParticleBuilder(product) {
+  MoveableBuilder.call(this, product);
+  this.lifespan = propertySetter.call(this, product, 'lifespan');
+
+  this.decay = propertySetter.call(this, product, 'decay');
+    
+  this.build = () => Object.assign({
+    lifespan: 255,
+    decay: 1
+  }, product);
+};
