@@ -11,7 +11,7 @@
     "build:html": "cp ./src/*.html ./dist/",
     "build": "npm run clean && npm run build:html && npm run build:js",
     "prebuild": "npm run test",
-    "lint": "eslint src/**",
+    "lint": "eslint src/js/**",
     "serve": "http-server dist"
   },
   "repository": {
