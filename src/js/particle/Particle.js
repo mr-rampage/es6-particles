@@ -21,11 +21,3 @@ Particle.prototype.move = function() {
 };
 
 export default Particle;
-
-export function * ParticleLifetime(seed) {
-  let step = seed;
-  while (step.life > 0) {
-    yield step;
-    step = seed.move();
-  }
-}
