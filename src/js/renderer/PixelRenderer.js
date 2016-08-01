@@ -9,8 +9,9 @@ export default function PixelRenderer(context) {
   const getColourAt = location =>
     context.getImageData(location[0], location[1], 1, 1).data;
 
-  this.draw = function(location, colour) {
-    const originalColour = getColourAt(location).map(value => value);
+  this.draw = function(location, colour, defaultColour) {
+    const originalColour = defaultColour || getColourAt(location)
+      .map(value => value);
     setColour(colour);
     context.putImageData(pixel, location[0], location[1]);
 
