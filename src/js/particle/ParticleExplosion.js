@@ -5,6 +5,7 @@ import VectorUtils from "../utils/VectorUtils";
 function initializeParticles(settings) {
   const particleBuilder = new ParticleBuilder()
     .at(settings.origin[0], settings.origin[1])
+    .acceleration(settings.acceleration[0], settings.acceleration[1])
     .life(settings.particleLife)
     .decay(settings.particleDecay);
   return Array(settings.numberOfParticles).fill().map(() =>

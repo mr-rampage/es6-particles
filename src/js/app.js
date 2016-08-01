@@ -5,10 +5,11 @@ const canvasContext = document.getElementById('particleCanvas')
 let timerId;
 
 const EXPLOSION_SETTINGS = {
+  acceleration: [0.95, 0.95],
   backgroundColour: [255, 255, 255, 255],
   context: canvasContext,
-  maxVelocity: 10,
-  numberOfParticles: 250,
+  maxVelocity: 20,
+  numberOfParticles: 500,
   origin: [200, 200],
   onComplete: () => {
     console.debug('All particles done!');
@@ -19,4 +20,4 @@ const EXPLOSION_SETTINGS = {
   particleLife: 255
 };
 
-timerId = setInterval(createParticleExplosion(EXPLOSION_SETTINGS), 32);
+timerId = setInterval(createParticleExplosion(EXPLOSION_SETTINGS), 16);
