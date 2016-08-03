@@ -1,23 +1,23 @@
 import createParticleExplosion from "./particle/ParticleExplosion";
 
-const canvasContext = document.getElementById('particleCanvas')
-  .getContext('2d');
-let timerId;
+const canvas = document.getElementById('particleCanvas');
+const canvasContext = canvas.getContext('2d');
 
 const EXPLOSION_SETTINGS = {
-  acceleration: [0.95, 0.95],
-  backgroundColour: [255, 255, 255, 255],
+  backgroundColour: [0, 0, 0, 0],
   context: canvasContext,
   maxVelocity: 20,
-  numberOfParticles: 500,
+  numberOfParticles: 250,
   origin: [200, 200],
   onComplete: () => {
     console.debug('All particles done!');
-    clearInterval(timerId);
+  },
+  onFrameStart: () => {
+    canvasContext.clearRect(0, 0, canvas.width, canvas.height);
   },
   particleColour: [32, 32, 32],
-  particleDecay: 5,
+  particleDecay: 10,
   particleLife: 255
 };
 
-timerId = setInterval(createParticleExplosion(EXPLOSION_SETTINGS), 16);
+createParticleExplosion(EXPLOSION_SETTINGS)();
