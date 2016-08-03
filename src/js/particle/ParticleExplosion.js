@@ -7,8 +7,7 @@ const randomNumber = (min, max) => Math.random() * (max - min) + min;
 
 function createParticleBuilder(settings) {
   const particleBuilder = new ParticleBuilder();
-  return particleBuilder
-    .at.apply(particleBuilder, settings.origin);
+  return particleBuilder.at.apply(particleBuilder, settings.origin);
 }
 
 function initializeParticles(settings) {
@@ -17,15 +16,14 @@ function initializeParticles(settings) {
     particleBuilder
       .facing.apply(particleBuilder,
         VectorUtils.random(2, settings.maxVelocity))
-      .acceleration(randomNumber(0.9, 0.99), randomNumber(0.9, 0.99))
+      .acceleration(randomNumber(0.95, 0.99), randomNumber(0.95, 0.99))
       .life(randomNumber(200, settings.particleLife))
-      .decay(randomNumber(3, settings.particleDecay))
+      .decay(randomNumber(1, settings.particleDecay))
       .build());
 }
 
 const inCanvas = particle =>
-  particle.coordinates[0] >= 0 &&
-  particle.coordinates[1] >= 0;
+  particle.coordinates[0] >= 0 && particle.coordinates[1] >= 0;
 
 export default function createParticleExplosion(settings) {
   const renderer = new PixelRenderer(settings.context);
@@ -34,13 +32,11 @@ export default function createParticleExplosion(settings) {
   return function drawFrame() {
     settings.onFrameStart();
 
-    particles
-      .map(particle => {
-        const pixel = ParticleAdapter.toPixel(
-          particle, settings.particleColour);
-        pixel.push(settings.backgroundColour);
-        return renderer.draw.apply(renderer, pixel);
-      });
+    for (let particle of particles) {
+      const pixel = ParticleAdapter.toPixel(particle, settings.particleColour);
+      pixel.push(settings.backgroundColour);
+      renderer.draw.apply(renderer, pixel);
+    }
 
     particles = particles
       .map(particle => particle.move())

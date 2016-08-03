@@ -15,8 +15,8 @@ const EXPLOSION_SETTINGS = {
   onFrameStart: () => {
     canvasContext.clearRect(0, 0, canvas.width, canvas.height);
   },
-  particleColour: [32, 32, 32],
-  particleDecay: 10,
+  particleColour: [0, 0, 0],
+  particleDecay: 5,
   particleLife: 255
 };
 

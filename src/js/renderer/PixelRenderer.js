@@ -1,12 +1,15 @@
 export default function PixelRenderer(context) {
-  const pixel = context.createImageData(1, 1);
+  const pixel = context.createImageData(2, 2);
 
-  const setColour = colour =>
-    colour.forEach((value, index) => {
-      pixel.data[index] = value;
-    });
+  const setColour = colour => {
+    for (let i = 0; i < pixel.data.length;) {
+      for (let value of colour) {
+        pixel.data[i++] = value;
+      }
+    }
+  };
 
-  this.draw = function(location, colour, defaultColour) {
+  this.draw = function(location, colour) {
     setColour(colour);
     context.putImageData(pixel, location[0], location[1]);
   };
